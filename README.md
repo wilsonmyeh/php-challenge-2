@@ -6,6 +6,6 @@ Please read all of the code before you begin. The challenge is to fill out the b
 2. Create a new branch and commit your progress regularly.
 3. Create a pull request when finished and send the link of the pull request to us.
 
-# Requirements
+## Requirements
 
 All tests *need* to pass before sending the results.
