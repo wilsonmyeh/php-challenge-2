@@ -6,11 +6,6 @@ function parse_request($request, $secret)
     // YOUR CODE GOES HERE
 }
 
-function total_number_of_valid_requests($pdo)
-{
-    // YOUR CODE GOES HERE
-}
-
 function dates_with_at_least_n_scores($pdo, $n)
 {
     // YOUR CODE GOES HERE

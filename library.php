@@ -2,22 +2,10 @@
 const API_SECRET = "21db65a65e204cca7b5afcbad91fea59";
 date_default_timezone_set("UTC");
 
-//populate_file("./requests.txt", API_SECRET, pow(10, 5));
-
-function populate_db($pdo, $file)
+function create_db_table($pdo)
 {
-    $sql = "
-    SELECT      name
-    FROM        sqlite_master
-    WHERE       type='table'
-    AND         name='scores'
-    ";
-    $statement = $pdo->prepare($sql);
-    $statement->execute();
-    if ($statement->fetchColumn()) {
-        return; // if the table already exists, get out
-    }
-
+    $sql = "DROP TABLE IF EXISTS scores";
+    $pdo->exec($sql);
 
     $sql = "
     CREATE TABLE scores
@@ -29,6 +17,12 @@ function populate_db($pdo, $file)
     )
     ";
     $pdo->exec($sql);
+}
+
+function populate_db_from_csv($pdo, $file)
+{
+    $sql = "DELETE FROM scores";
+    $pdo->exec($sql);
 
 
     $sql = "
@@ -37,16 +31,38 @@ function populate_db($pdo, $file)
     ";
 
     $handle = fopen($file, "r");
-    while (($request = fgets($handle)) !== false) {
-        $data = parse_request($request, API_SECRET);
-        if ($data) {
-            $pdo->prepare($sql)->execute($data);
-        }
+    while (($data = fgetcsv($handle)) !== false) {
+        $pdo->prepare($sql)->execute($data);
     }
     fclose($handle);
 }
 
-function populate_file($file, $secret, $count = 1000, $noise = 0.2)
+function populate_db_from_requests($pdo, $file)
+{
+    $sql = "DELETE FROM scores";
+    $pdo->exec($sql);
+
+
+    $sql = "
+    INSERT INTO scores (`user_id`, `score`, `date`)
+    VALUES (:user_id, :score, :date)
+    ";
+
+    $count  = 0;
+    $handle = fopen($file, "r");
+    while (($request = fgets($handle)) !== false) {
+        $data = parse_request($request, API_SECRET);
+        if ($data) {
+            $pdo->prepare($sql)->execute($data);
+            $count++;
+        }
+    }
+    fclose($handle);
+
+    return $count;
+}
+
+function populate_requests($file, $secret, $count = 1000, $noise = 0.2)
 {
     $bugs = 0;
     file_put_contents($file, "");

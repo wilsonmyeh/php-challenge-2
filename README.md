@@ -1,11 +1,8 @@
 # PHP Backend Challenge
 
-Please read all of the code before you begin. The challenge is to fill out the bodies of the existing function stubs in `solution.php` to make all the tests pass. To test your solution, run `php test.php` 
+Please read all of the code before you begin. Fill out existing function stubs in `solution.php` to pass all unit tests.
+To test your solution, run `php test.php`. All tests *must* to pass. 
 
-1. Clone/fork this repository
-2. Create a new branch and commit your progress regularly.
-3. Create a pull request when finished and send the link of the pull request to us.
-
-## Requirements
-
-All tests *need* to pass before sending the results.
+1. Clone this repository and create a new branch.
+2. Document your progress with descriptive commits.
+3. Create a pull request and send us the link to it.
