@@ -1,5 +1,5 @@
 <?php
-// YOUR NAME AND EMAIL GOES HERE
+// YOUR NAME AND EMAIL GO HERE
 
 function parse_request($request, $secret)
 {
