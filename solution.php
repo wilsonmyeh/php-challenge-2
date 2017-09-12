@@ -1,5 +1,5 @@
 <?php
-// YOUR NAME AND EMAIL GOES HERE
+// YOUR NAME AND EMAIL GO HERE
 
 function parse_request($request, $secret)
 {
@@ -16,7 +16,7 @@ function users_with_top_score_on_date($pdo, $date)
     // YOUR CODE GOES HERE
 }
 
-function times_user_beat_overall_daily_average($pdo, $user_id)
+function dates_when_user_was_in_top_n($pdo, $user_id, $n)
 {
     // YOUR CODE GOES HERE
 }
