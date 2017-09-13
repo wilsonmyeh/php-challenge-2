@@ -17,7 +17,7 @@ assert(function_exists("dates_when_user_was_in_top_n"));
 
 // check encode/decode of the same payload
 for ($i = 0; $i < 1000; $i++) {
-    $payload = ["s" => "string", "b" => true, "i" => $i, "f" => $i / 10];
+    $payload = ["s" => "string ".$i, "b" => (bool)($i % 2), "i" => $i, "f" => $i / 10];
     $request = make_request($payload, API_SECRET);
 
     assert(parse_request($request, API_SECRET) === $payload); // original
